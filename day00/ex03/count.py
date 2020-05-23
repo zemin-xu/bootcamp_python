@@ -1,4 +1,5 @@
 import string
+import math
 
 def text_analyzer(text):
     '''Displays the sums of upper chars, lower chars, puctuation chars and spaces in a given text.'''
