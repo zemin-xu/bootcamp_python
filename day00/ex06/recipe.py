@@ -14,7 +14,7 @@ cookbook = {
     },
     'salad':
     {
-        'ingredients': ['ham', 'bread', 'cheese', 'tomatoes'],
+        'ingredients': ['avocado', 'arugula', 'tomatoes', 'spinach'],
         'meal': 'lunch',
         'prep_time': 15,
     },
@@ -31,8 +31,25 @@ def print_recipe(recipt_name):
     print("To be eaten for {}.".format(recipt_key.get('meal')))
     print("Takes {} minutes of cooking.".format(recipt_key.get('prep_time')))
 
-def add_recipe(recipt_name):
-    print("add")
+def print_all():
+    for k in cookbook.keys():
+        print_recipe(k)
+
+def add_recipe():
+    recipt_name = input("give me the name of recipt to add: \n")
+    recipt_ingredients = input("give me the ingredients, seperated by comma\n")
+    ingre_list = recipt_ingredients.split(',')
+    recipt_type = input("the type\n")
+    recipt_time = input("the time\n")
+    cookbook[recipt_name] = {
+        'ingredients': ingre_list,
+        'meal': recipt_type,
+        'prep_time': recipt_time,
+    }
+
+def delete_recipe():
+    recipt_name = input("give me the name of recipt to delete: \n")
+    del(cookbook[recipt_name])
 
 def menu():
     while (True):
@@ -44,13 +61,13 @@ def menu():
         print("5: Quit")
         command = input()
         if (command == '1'):
-            add_recipe(input("Please give me the recipe name you will add: "))
+            add_recipe()
         elif (command == '2'):
-            add_recipe(input("Please give me the recipe name you will add: "))
+            delete_recipe()
         elif (command == '3'):
             print_recipe(input("Please give me the recipe name you want to know\n"))
         elif (command == '4'):
-            add_recipe(input("Please give me the recipe name you will add: "))
+            print_all()
         elif (command == '5'):
             print("quit the program")
             return
