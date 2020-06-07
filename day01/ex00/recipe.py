@@ -21,12 +21,12 @@ class Recipe:
         return self.cooking_time
     """
 
-    def __init__(self, n, cl, ct, i, d, rt):
+    def __init__(self, n, cl, ct, i, rt, d):
         self.name = "" 
         self.cooking_lvl = 0 
         self.cooking_time = 0 
         self.ingredients = ["",]
-        self.recipe_type = ["",]
+        self.recipe_type = ""
 
         try:
             if isinstance(n, str):
@@ -74,6 +74,15 @@ class Recipe:
                 print("type error for ingredients, should be list")
                 raise AttributeError
         except AttributeError:
+            pass
+
+        try:
+            if isinstance(rt, str):
+                self.recipe_type= rt 
+            else:
+                raise AttributeError
+        except AttributeError:
+            print("type error for type")
             pass
 
     def __str__(self):
